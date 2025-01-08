@@ -1,25 +1,38 @@
-/* filepath: /c:/Users/caron/Documents/CESI cours/movies_react/src/components/NotFound/NotFound.css */
 .not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   text-align: center;
   padding: 2rem;
+  background-color: #f4f4f4;
 }
 
 .not-found h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
+  color: #ff6b6b;
 }
 
 .not-found p {
   font-size: 1.5rem;
   margin-bottom: 2rem;
+  color: #666;
 }
 
 .not-found a {
   font-size: 1.2rem;
   color: #007bff;
   text-decoration: none;
+  background-color: #f4f4f4;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .not-found a:hover {
   text-decoration: underline;
+  background-color: #007bff;
+  color: white;
 }

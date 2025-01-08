@@ -139,3 +139,10 @@ input[type="text"] {
   background-color: #0056b3;
   cursor: default;
 }
+
+.no-movies-found {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #666;
+  margin-top: 2rem;
+}

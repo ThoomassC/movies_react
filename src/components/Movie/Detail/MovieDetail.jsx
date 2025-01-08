@@ -28,7 +28,7 @@ const MovieDetail = () => {
         }
         setMovie(movieData);
         const creditsData = await getMovieCredits(id);
-        setActors(creditsData.cast.slice(0, 10)); // Limit to 10 actors
+        setActors(creditsData.cast.slice(0, 10));
       } catch (error) {
         console.error("Erreur lors du chargement du film :", error);
         setError(true); // Set error state
@@ -43,7 +43,7 @@ const MovieDetail = () => {
     setSnackbar({ message, type, visible: true });
     setTimeout(() => {
       setSnackbar({ message: "", type: "", visible: false });
-    }, 3000);
+    }, 5000);
   };
 
   const handleAddToWishlist = () => {
@@ -51,8 +51,27 @@ const MovieDetail = () => {
     showSnackbar("Ajouté à la liste de souhaits", "success");
   };
 
-  if (error) return <div>Erreur lors du chargement du film.</div>; // Display error message
-  if (!movie) return <div>Chargement en cours...</div>;
+  if (error)
+    return (
+      <div className="message-container">
+        <div className="message error">Erreur lors du chargement du film.</div>
+        {snackbar.visible && (
+          <Snackbar
+            message={snackbar.message}
+            type={snackbar.type}
+            onClose={() =>
+              setSnackbar({ message: "", type: "", visible: false })
+            }
+          />
+        )}
+      </div>
+    );
+  if (!movie)
+    return (
+      <div className="message-container">
+        <div className="message loading">Chargement en cours...</div>
+      </div>
+    );
 
   const isInWishlist = wishlist.some((item) => item.id === movie.id);
 

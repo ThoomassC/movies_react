@@ -16,7 +16,7 @@ const Wishlist = () => {
     setSnackbar({ message, type, visible: true });
     setTimeout(() => {
       setSnackbar({ message: "", type: "", visible: false });
-    }, 3000);
+    }, 5000);
   };
 
   const handleRemove = (movieId) => {

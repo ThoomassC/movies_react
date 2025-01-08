@@ -41,7 +41,7 @@ const MovieList = () => {
     setSnackbar({ message, type, visible: true });
     setTimeout(() => {
       setSnackbar({ message: "", type: "", visible: false });
-    }, 3000);
+    }, 5000);
   };
 
   const handleAddToWishlist = (movie) => {
@@ -75,57 +75,67 @@ const MovieList = () => {
     <div className="container">
       <h1>Films Populaires</h1>
       <SearchBar searchTerm={searchTerm} handleSearch={handleSearch} />
-      <div className="pagination-controls">
-        <label htmlFor="moviesPerPage">Films par page:</label>
-        <select
-          id="moviesPerPage"
-          value={moviesPerPage}
-          onChange={handleMoviesPerPageChange}
-        >
-          <option value={10}>10</option>
-          <option value={30}>30</option>
-          <option value={50}>50</option>
-        </select>
-      </div>
-      <div className="pagination">
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index + 1}
-            className={`pagination-button ${
-              currentPage === index + 1 ? "active" : ""
-            }`}
-            onClick={() => handlePageChange(index + 1)}
+      {filteredMovies.length > 0 && (
+        <div className="pagination-controls">
+          <label htmlFor="moviesPerPage">Films par page:</label>
+          <select
+            id="moviesPerPage"
+            value={moviesPerPage}
+            onChange={handleMoviesPerPageChange}
           >
-            {index + 1}
-          </button>
-        ))}
-      </div>
-      <div className="movie-grid">
-        {currentMovies.map((movie) => {
-          const isInWishlist = wishlist.some((item) => item.id === movie.id);
-          return (
-            <CardMovie
-              key={movie.id}
-              movie={movie}
-              isInWishlist={isInWishlist}
-              onAddToWishlist={handleAddToWishlist}
-            />
-          );
-        })}
-      </div>
-      <div className="pagination">
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index + 1}
-            className={`pagination-button ${
-              currentPage === index + 1 ? "active" : ""
-            }`}
-            onClick={() => handlePageChange(index + 1)}
-          >
-            {index + 1}
-          </button>
-        ))}
-      </div>
+            <option value={10}>10</option>
+            <option value={30}>30</option>
+            <option value={50}>50</option>
+          </select>
+        </div>
+      )}
+      {filteredMovies.length === 0 ? (
+        <div className="no-movies-found">Aucun film n'a été trouvé</div>
+      ) : (
+        <>
+          <div className="pagination">
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index + 1}
+                className={`pagination-button ${
+                  currentPage === index + 1 ? "active" : ""
+                }`}
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
+          <div className="movie-grid">
+            {currentMovies.map((movie) => {
+              const isInWishlist = wishlist.some(
+                (item) => item.id === movie.id
+              );
+              return (
+                <CardMovie
+                  key={movie.id}
+                  movie={movie}
+                  isInWishlist={isInWishlist}
+                  onAddToWishlist={handleAddToWishlist}
+                />
+              );
+            })}
+          </div>
+          <div className="pagination">
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index + 1}
+                className={`pagination-button ${
+                  currentPage === index + 1 ? "active" : ""
+                }`}
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
       {snackbar.visible && (
         <Snackbar
           message={snackbar.message}
