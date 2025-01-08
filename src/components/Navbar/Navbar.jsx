@@ -11,7 +11,7 @@ const Navbar = () => {
       <Link to="/" className="nav-title">
         Filmanéo
       </Link>
-      <Link to="/wishlist">Wishlist ({wishlist.length})</Link>
+      <Link to="/wishlist">Liste de souhaits ({wishlist.length})</Link>
     </nav>
   );
 };
