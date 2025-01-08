@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { getPopularMovies } from "../../../services/movies";
 import Snackbar from "../../global/Snackbar/Snackbar";
 import SearchBar from "../../SearchBar/SearchBar";
 import { useWishlist } from "../../../context/WishlistContext";
+import CardMovie from "../Card/CardMovie";
 import "./MovieList.css";
 
 const MovieList = () => {
@@ -21,7 +22,6 @@ const MovieList = () => {
     const fetchMovies = async () => {
       try {
         const data = await getPopularMovies();
-
         setMovies(data.results || []);
         showSnackbar("Films chargés", "success");
       } catch (error) {
@@ -104,24 +104,12 @@ const MovieList = () => {
         {currentMovies.map((movie) => {
           const isInWishlist = wishlist.some((item) => item.id === movie.id);
           return (
-            <div key={movie.id} className="movie-card">
-              <img
-                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                alt={movie.title}
-                onClick={() => (window.location.href = `/movie/${movie.id}`)}
-              />
-              <h2>{movie.title}</h2>
-              <p className="movie-overview">{movie.overview}</p>
-              <button
-                className={`wishlist-button ${isInWishlist ? "disabled" : ""}`}
-                onClick={() => handleAddToWishlist(movie)}
-                disabled={isInWishlist}
-              >
-                {isInWishlist
-                  ? "Déjà dans la liste de souhaits"
-                  : "Ajouter à la liste de souhaits"}
-              </button>
-            </div>
+            <CardMovie
+              key={movie.id}
+              movie={movie}
+              isInWishlist={isInWishlist}
+              onAddToWishlist={handleAddToWishlist}
+            />
           );
         })}
       </div>

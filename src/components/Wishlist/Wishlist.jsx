@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useWishlist } from "../../context/WishlistContext";
 import Snackbar from "../global/Snackbar/Snackbar";
+import CardMovie from "../Movie/Card/CardMovie";
 import "./Wishlist.css";
 
 const Wishlist = () => {
@@ -31,21 +32,11 @@ const Wishlist = () => {
       </p>
       <div className="wishlist-grid">
         {wishlist.map((movie) => (
-          <div key={movie.id} className="wishlist-card">
-            <h2 className="wishlist-movie-title">{movie.title}</h2>
-            <img
-              className="wishlist-movie-poster"
-              src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-              alt={movie.title}
-            />
-            <p className="wishlist-movie-info">Note : {movie.vote_average}</p>
-            <button
-              className="wishlist-remove-button"
-              onClick={() => handleRemove(movie.id)}
-            >
-              Retirer
-            </button>
-          </div>
+          <CardMovie
+            key={movie.id}
+            movie={movie}
+            onRemoveFromWishlist={handleRemove}
+          />
         ))}
       </div>
       {snackbar.visible && (
