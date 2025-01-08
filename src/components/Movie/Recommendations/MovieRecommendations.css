@@ -27,6 +27,7 @@
   transition: transform 0.2s, box-shadow 0.2s;
   width: 100%; /* Ensure the card takes full width */
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  cursor: pointer; /* Add pointer cursor to indicate clickable area */
 }
 
 .recommendation-card:hover {
@@ -36,7 +37,6 @@
 
 .recommendation-card img {
   border-radius: 8px;
-  cursor: pointer;
   margin-right: 1rem;
   width: 80px; /* Reduce image size */
   height: auto;

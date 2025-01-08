@@ -23,7 +23,7 @@ const MovieDetail = () => {
         const movieData = await getMovieDetails(id);
         setMovie(movieData);
         const creditsData = await getMovieCredits(id);
-        setActors(creditsData.cast.slice(0, 10));
+        setActors(creditsData.cast.slice(0, 10)); // Limit to 10 actors
       } catch (error) {
         console.error("Erreur lors du chargement du film :", error);
         showSnackbar("Erreur lors du chargement du film :", "error");
@@ -80,21 +80,25 @@ const MovieDetail = () => {
         </div>
         <h2 className="actors-title">Acteurs principaux</h2>
         <ul className="actors-list">
-          {actors.map((actor) => (
-            <li key={actor.id} className="actor-item">
-              <img
-                className="actor-photo"
-                src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
-                alt={actor.name}
-              />
-              <div className="actor-info">
-                <p className="actor-name">{actor.name}</p>
-                <p className="actor-character">
-                  dans le rôle de {actor.character}
-                </p>
-              </div>
-            </li>
-          ))}
+          {actors.slice(0, 10).map(
+            (
+              actor // Ensure only 10 actors are displayed
+            ) => (
+              <li key={actor.id} className="actor-item">
+                <img
+                  className="actor-photo"
+                  src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+                  alt={actor.name}
+                />
+                <div className="actor-info">
+                  <p className="actor-name">{actor.name}</p>
+                  <p className="actor-character">
+                    dans le rôle de {actor.character}
+                  </p>
+                </div>
+              </li>
+            )
+          )}
         </ul>
         {snackbar.visible && (
           <Snackbar

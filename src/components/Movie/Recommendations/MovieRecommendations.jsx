@@ -18,17 +18,23 @@ const MovieRecommendations = ({ movieId }) => {
     fetchRecommendations();
   }, [movieId]);
 
+  const handleCardClick = (movieId) => {
+    window.location.href = `/movie/${movieId}`;
+  };
+
   return (
     <div className="recommendations-container">
       <h2>Recommandations</h2>
       <div className="recommendations-list">
         {recommendations.map((movie, index) => (
           <React.Fragment key={movie.id}>
-            <div className="recommendation-card">
+            <div
+              className="recommendation-card"
+              onClick={() => handleCardClick(movie.id)}
+            >
               <img
                 src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
                 alt={movie.title}
-                onClick={() => (window.location.href = `/movie/${movie.id}`)}
               />
               <div className="recommendation-info">
                 <h3>{movie.title}</h3>
