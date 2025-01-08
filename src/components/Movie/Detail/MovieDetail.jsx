@@ -16,17 +16,22 @@ const MovieDetail = () => {
     type: "",
     visible: false,
   });
+  const [error, setError] = useState(false); // Add error state
   const { wishlist, addToWishlist } = useWishlist();
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
         const movieData = await getMovieDetails(id);
+        if (!movieData) {
+          throw new Error("Movie not found");
+        }
         setMovie(movieData);
         const creditsData = await getMovieCredits(id);
         setActors(creditsData.cast.slice(0, 10)); // Limit to 10 actors
       } catch (error) {
         console.error("Erreur lors du chargement du film :", error);
+        setError(true); // Set error state
         showSnackbar("Erreur lors du chargement du film :", "error");
       }
     };
@@ -46,6 +51,7 @@ const MovieDetail = () => {
     showSnackbar("Ajouté à la liste de souhaits", "success");
   };
 
+  if (error) return <div>Erreur lors du chargement du film.</div>; // Display error message
   if (!movie) return <div>Chargement en cours...</div>;
 
   const isInWishlist = wishlist.some((item) => item.id === movie.id);
@@ -73,7 +79,9 @@ const MovieDetail = () => {
               onClick={handleAddToWishlist}
               disabled={isInWishlist}
             >
-              {isInWishlist ? "Dans les souhaits" : "+ Souhaits"}
+              {isInWishlist
+                ? "Déjà dans la liste de souhaits"
+                : "Ajouter à la liste de souhaits"}
             </button>
           </div>
         </div>

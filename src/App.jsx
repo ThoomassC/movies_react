@@ -5,6 +5,7 @@ import MovieList from "./components/Movie/List/MovieList";
 import MovieDetail from "./components/Movie/Detail/MovieDetail";
 import Wishlist from "./components/Wishlist/Wishlist";
 import Navbar from "./components/Navbar/Navbar";
+import NotFound from "./components/NotFound/NotFound";
 import "./App.css";
 
 const App = () => {
@@ -14,9 +15,10 @@ const App = () => {
         <Navbar />
         <div className="container">
           <Routes>
-            <Route path="/" element={<MovieList />} />
+            <Route exact path="/" element={<MovieList />} />
             <Route path="/movie/:id" element={<MovieDetail />} />
             <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </Router>
