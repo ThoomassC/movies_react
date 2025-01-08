@@ -1,0 +1,50 @@
+.actors-title {
+  font-size: 1.8rem;
+  color: #333;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.actors-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.actor-item {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  background-color: #fff;
+  padding: 0.5rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1 1 calc(50% - 1rem);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.actor-photo {
+  border-radius: 4px;
+  width: 80px;
+  height: auto;
+}
+
+.actor-info {
+  flex: 1;
+}
+
+.actor-name {
+  font-weight: bold;
+  margin: 0;
+}
+
+.actor-character {
+  margin: 0;
+  color: #666;
+}

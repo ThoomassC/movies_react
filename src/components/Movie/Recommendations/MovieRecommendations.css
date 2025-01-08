@@ -3,11 +3,11 @@
   background-color: #f4f4f4;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  flex: 2; /* Increase the flex value to take more space */
+  flex: 2;
   display: flex;
   flex-direction: column;
   height: 100%;
-  overflow-y: auto; /* Allow scrolling if content overflows */
+  overflow-y: auto;
 }
 
 .recommendations-list {
@@ -23,11 +23,11 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 1rem; /* Reduce padding for smaller cards */
+  padding: 1rem;
   transition: transform 0.2s, box-shadow 0.2s;
-  width: 100%; /* Ensure the card takes full width */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-  cursor: pointer; /* Add pointer cursor to indicate clickable area */
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
 }
 
 .recommendation-card:hover {
@@ -38,7 +38,7 @@
 .recommendation-card img {
   border-radius: 8px;
   margin-right: 1rem;
-  width: 80px; /* Reduce image size */
+  width: 80px;
   height: auto;
 }
 
@@ -48,7 +48,7 @@
 
 .recommendation-card h3 {
   margin: 0.5rem 0;
-  font-size: 1rem; /* Reduce font size */
+  font-size: 1rem;
   color: #333;
   white-space: nowrap;
   overflow: hidden;
@@ -56,7 +56,7 @@
 }
 
 .recommendation-overview {
-  font-size: 0.8rem; /* Reduce font size */
+  font-size: 0.8rem;
   color: #666;
   margin-bottom: 1rem;
   display: -webkit-box;

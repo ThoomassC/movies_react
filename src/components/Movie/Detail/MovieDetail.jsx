@@ -4,6 +4,7 @@ import { getMovieDetails, getMovieCredits } from "../../../services/movies";
 import Snackbar from "../../global/Snackbar/Snackbar";
 import { useWishlist } from "../../../context/WishlistContext";
 import MovieRecommendations from "../Recommendations/MovieRecommendations";
+import ActorsMovie from "../Actors/ActorsMovie";
 import "./MovieDetail.css";
 
 const MovieDetail = () => {
@@ -78,28 +79,7 @@ const MovieDetail = () => {
             </button>
           </div>
         </div>
-        <h2 className="actors-title">Acteurs principaux</h2>
-        <ul className="actors-list">
-          {actors.slice(0, 10).map(
-            (
-              actor // Ensure only 10 actors are displayed
-            ) => (
-              <li key={actor.id} className="actor-item">
-                <img
-                  className="actor-photo"
-                  src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
-                  alt={actor.name}
-                />
-                <div className="actor-info">
-                  <p className="actor-name">{actor.name}</p>
-                  <p className="actor-character">
-                    dans le rôle de {actor.character}
-                  </p>
-                </div>
-              </li>
-            )
-          )}
-        </ul>
+        <ActorsMovie actors={actors} />
         {snackbar.visible && (
           <Snackbar
             message={snackbar.message}

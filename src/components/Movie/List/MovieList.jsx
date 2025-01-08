@@ -55,7 +55,7 @@ const MovieList = () => {
 
   const handleMoviesPerPageChange = (event) => {
     setMoviesPerPage(Number(event.target.value));
-    setCurrentPage(1); // Reset to first page when changing movies per page
+    setCurrentPage(1);
   };
 
   const filteredMovies = movies.filter((movie) =>
