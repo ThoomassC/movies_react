@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./Snackbar.css";
+import styles from "./Snackbar.module.css";
 
 const Snackbar = ({ message, type, onClose }) => {
   useEffect(() => {
@@ -11,13 +11,13 @@ const Snackbar = ({ message, type, onClose }) => {
   }, [onClose]);
 
   return (
-    <div className={`snackbar ${type} show`}>
-      <div className="snackbar-icon">
+    <div className={`${styles.snackbar} ${styles[type]} ${styles.show}`}>
+      <div className={styles["snackbar-icon"]}>
         {type === "success" && <i className="fas fa-check-circle"></i>}
         {type === "error" && <i className="fas fa-times-circle"></i>}
       </div>
-      <div className="snackbar-message">{message}</div>
-      <button className="snackbar-close" onClick={onClose}>
+      <div className={styles["snackbar-message"]}>{message}</div>
+      <button className={styles["snackbar-close"]} onClick={onClose}>
         &times;
       </button>
     </div>
