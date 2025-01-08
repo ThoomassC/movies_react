@@ -4,7 +4,7 @@ import Snackbar from "../../global/Snackbar/Snackbar";
 import SearchBar from "../../SearchBar/SearchBar";
 import { useWishlist } from "../../../context/WishlistContext";
 import CardMovie from "../Card/CardMovie";
-import "./MovieList.css";
+import styles from "./MovieList.module.css";
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
@@ -72,11 +72,11 @@ const MovieList = () => {
   const totalPages = Math.ceil(filteredMovies.length / moviesPerPage);
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       <h1>Films Populaires</h1>
       <SearchBar searchTerm={searchTerm} handleSearch={handleSearch} />
       {filteredMovies.length > 0 && (
-        <div className="pagination-controls">
+        <div className={styles["pagination-controls"]}>
           <label htmlFor="moviesPerPage">Films par page:</label>
           <select
             id="moviesPerPage"
@@ -90,15 +90,17 @@ const MovieList = () => {
         </div>
       )}
       {filteredMovies.length === 0 ? (
-        <div className="no-movies-found">Aucun film n'a été trouvé</div>
+        <div className={styles["no-movies-found"]}>
+          Aucun film n'a été trouvé
+        </div>
       ) : (
         <>
-          <div className="pagination">
+          <div className={styles.pagination}>
             {Array.from({ length: totalPages }, (_, index) => (
               <button
                 key={index + 1}
-                className={`pagination-button ${
-                  currentPage === index + 1 ? "active" : ""
+                className={`${styles["pagination-button"]} ${
+                  currentPage === index + 1 ? styles.active : ""
                 }`}
                 onClick={() => handlePageChange(index + 1)}
               >
@@ -106,7 +108,7 @@ const MovieList = () => {
               </button>
             ))}
           </div>
-          <div className="movie-grid">
+          <div className={styles["movie-grid"]}>
             {currentMovies.map((movie) => {
               const isInWishlist = wishlist.some(
                 (item) => item.id === movie.id
@@ -121,12 +123,12 @@ const MovieList = () => {
               );
             })}
           </div>
-          <div className="pagination">
+          <div className={styles.pagination}>
             {Array.from({ length: totalPages }, (_, index) => (
               <button
                 key={index + 1}
-                className={`pagination-button ${
-                  currentPage === index + 1 ? "active" : ""
+                className={`${styles["pagination-button"]} ${
+                  currentPage === index + 1 ? styles.active : ""
                 }`}
                 onClick={() => handlePageChange(index + 1)}
               >

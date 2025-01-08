@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useWishlist } from "../../context/WishlistContext";
-import "./Navbar.css";
+import styles from "./Navbar.module.css";
 
 const Navbar = () => {
   const { wishlist } = useWishlist();
 
   return (
-    <nav>
-      <Link to="/" className="nav-title">
+    <nav className={styles.nav}>
+      <Link to="/" className={styles["nav-title"]}>
         Filmanéo
       </Link>
       <Link to="/wishlist">Liste de souhaits ({wishlist.length})</Link>

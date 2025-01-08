@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getMovieRecommendations } from "../../../services/movies";
-import "./MovieRecommendations.css";
+import styles from "./MovieRecommendations.module.css";
 
 const MovieRecommendations = ({ movieId }) => {
   const [recommendations, setRecommendations] = useState([]);
@@ -23,25 +23,29 @@ const MovieRecommendations = ({ movieId }) => {
   };
 
   return (
-    <div className="recommendations-container">
+    <div className={styles["recommendations-container"]}>
       <h2>Recommandations</h2>
-      <div className="recommendations-list">
+      <div className={styles["recommendations-list"]}>
         {recommendations.map((movie, index) => (
           <React.Fragment key={movie.id}>
             <div
-              className="recommendation-card"
+              className={styles["recommendation-card"]}
               onClick={() => handleCardClick(movie.id)}
             >
               <img
                 src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
                 alt={movie.title}
               />
-              <div className="recommendation-info">
+              <div className={styles["recommendation-info"]}>
                 <h3>{movie.title}</h3>
-                <p className="recommendation-overview">{movie.overview}</p>
+                <p className={styles["recommendation-overview"]}>
+                  {movie.overview}
+                </p>
               </div>
             </div>
-            {index < recommendations.length - 1 && <hr className="divider" />}
+            {index < recommendations.length - 1 && (
+              <hr className={styles.divider} />
+            )}
           </React.Fragment>
         ))}
       </div>

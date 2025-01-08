@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Snackbar from "../global/Snackbar/Snackbar";
-import "./NotFound.css";
+import styles from "./NotFound.module.css";
 
 const NotFound = () => {
   const [snackbar, setSnackbar] = useState({
@@ -19,10 +19,12 @@ const NotFound = () => {
   }, []);
 
   return (
-    <div className="not-found">
+    <div className={styles["not-found"]}>
       <h1>404 - Page inexistante</h1>
       <p>Désolé, la page n'existe pas ou plus.</p>
-      <Link to="/">Retourner à la page d'accueil</Link>
+      <Link to="/" className={styles["not-found-link"]}>
+        Retourner à la page d'accueil
+      </Link>
       {snackbar.visible && (
         <Snackbar
           message={snackbar.message}

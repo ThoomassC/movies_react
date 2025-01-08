@@ -5,7 +5,7 @@ import Snackbar from "../../global/Snackbar/Snackbar";
 import { useWishlist } from "../../../context/WishlistContext";
 import MovieRecommendations from "../Recommendations/MovieRecommendations";
 import ActorsMovie from "../Actors/ActorsMovie";
-import "./MovieDetail.css";
+import styles from "./MovieDetail.module.css";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -53,8 +53,10 @@ const MovieDetail = () => {
 
   if (error)
     return (
-      <div className="message-container">
-        <div className="message error">Erreur lors du chargement du film.</div>
+      <div className={styles["message-container"]}>
+        <div className={styles.message + " " + styles.error}>
+          Erreur lors du chargement du film.
+        </div>
         {snackbar.visible && (
           <Snackbar
             message={snackbar.message}
@@ -68,30 +70,36 @@ const MovieDetail = () => {
     );
   if (!movie)
     return (
-      <div className="message-container">
-        <div className="message loading">Chargement en cours...</div>
+      <div className={styles["message-container"]}>
+        <div className={styles.message + " " + styles.loading}>
+          Chargement en cours...
+        </div>
       </div>
     );
 
   const isInWishlist = wishlist.some((item) => item.id === movie.id);
 
   return (
-    <div className="movie-detail-page">
-      <div className="movie-detail-container">
-        <div className="movie-header">
+    <div className={styles["movie-detail-page"]}>
+      <div className={styles["movie-detail-container"]}>
+        <div className={styles["movie-header"]}>
           <img
-            className="movie-poster"
+            className={styles["movie-poster"]}
             src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
             alt={movie.title}
           />
-          <div className="movie-info-container">
-            <h1 className="movie-title">{movie.title}</h1>
-            <p className="movie-overview">{movie.overview}</p>
-            <p className="movie-rating">Note moyenne : {movie.vote_average}</p>
+          <div className={styles["movie-info-container"]}>
+            <h1 className={styles["movie-title"]}>{movie.title}</h1>
+            <p className={styles["movie-overview"]}>{movie.overview}</p>
+            <p className={styles["movie-rating"]}>
+              Note moyenne : {movie.vote_average}
+            </p>
           </div>
         </div>
         <button
-          className={`wishlist-button ${isInWishlist ? "disabled" : ""}`}
+          className={`${styles["wishlist-button"]} ${
+            isInWishlist ? styles["disabled"] : ""
+          }`}
           onClick={handleAddToWishlist}
           disabled={isInWishlist}
         >

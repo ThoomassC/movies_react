@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useWishlist } from "../../context/WishlistContext";
 import Snackbar from "../global/Snackbar/Snackbar";
 import CardMovie from "../Movie/Card/CardMovie";
-import "./Wishlist.css";
+import styles from "./Wishlist.module.css";
 
 const Wishlist = () => {
   const { wishlist, removeFromWishlist } = useWishlist();
@@ -25,12 +25,12 @@ const Wishlist = () => {
   };
 
   return (
-    <div className="wishlist-container">
-      <h1 className="wishlist-title">Liste de souhaits</h1>
-      <p className="wishlist-count">
+    <div className={styles["wishlist-container"]}>
+      <h1 className={styles["wishlist-title"]}>Liste de souhaits</h1>
+      <p className={styles["wishlist-count"]}>
         Total des films dans la liste de souhaits : {wishlist.length}
       </p>
-      <div className="wishlist-grid">
+      <div className={styles["wishlist-grid"]}>
         {wishlist.map((movie) => (
           <CardMovie
             key={movie.id}

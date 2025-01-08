@@ -1,5 +1,5 @@
 import React from "react";
-import "./CardMovie.css";
+import styles from "./CardMovie.module.css";
 
 const CardMovie = ({
   movie,
@@ -8,19 +8,23 @@ const CardMovie = ({
   onRemoveFromWishlist,
 }) => {
   return (
-    <div className="card-movie">
+    <div className={styles["card-movie"]}>
       <img
         src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
         alt={movie.title}
         onClick={() => (window.location.href = `/movie/${movie.id}`)}
-        className="card-movie-poster"
+        className={styles["card-movie-poster"]}
       />
-      <h2 className="card-movie-title">{movie.title}</h2>
-      <p className="card-movie-overview">{movie.overview}</p>
-      <p className="card-movie-rating">Note moyenne : {movie.vote_average}</p>
+      <h2 className={styles["card-movie-title"]}>{movie.title}</h2>
+      <p className={styles["card-movie-overview"]}>{movie.overview}</p>
+      <p className={styles["card-movie-rating"]}>
+        Note moyenne : {movie.vote_average}
+      </p>
       {onAddToWishlist && (
         <button
-          className={`card-wishlist-button ${isInWishlist ? "disabled" : ""}`}
+          className={`${styles["card-wishlist-button"]} ${
+            isInWishlist ? styles["disabled"] : ""
+          }`}
           onClick={() => onAddToWishlist(movie)}
           disabled={isInWishlist}
         >
@@ -29,7 +33,7 @@ const CardMovie = ({
       )}
       {onRemoveFromWishlist && (
         <button
-          className="card-remove-button"
+          className={styles["card-remove-button"]}
           onClick={() => onRemoveFromWishlist(movie.id)}
         >
           - Souhaits
