@@ -17,6 +17,7 @@ const CardMovie = ({
       />
       <h2 className="card-movie-title">{movie.title}</h2>
       <p className="card-movie-overview">{movie.overview}</p>
+      <p className="card-movie-rating">Note moyenne : {movie.vote_average}</p>
       {onAddToWishlist && (
         <button
           className={`card-wishlist-button ${isInWishlist ? "disabled" : ""}`}

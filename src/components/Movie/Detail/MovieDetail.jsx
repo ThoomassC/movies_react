@@ -87,23 +87,18 @@ const MovieDetail = () => {
           <div className="movie-info-container">
             <h1 className="movie-title">{movie.title}</h1>
             <p className="movie-overview">{movie.overview}</p>
-            <p className="movie-info">
-              <strong>Date de sortie :</strong> {movie.release_date}
-            </p>
-            <p className="movie-info">
-              <strong>Note moyenne :</strong> {movie.vote_average}
-            </p>
-            <button
-              className={`wishlist-button ${isInWishlist ? "disabled" : ""}`}
-              onClick={handleAddToWishlist}
-              disabled={isInWishlist}
-            >
-              {isInWishlist
-                ? "Déjà dans la liste de souhaits"
-                : "Ajouter à la liste de souhaits"}
-            </button>
+            <p className="movie-rating">Note moyenne : {movie.vote_average}</p>
           </div>
         </div>
+        <button
+          className={`wishlist-button ${isInWishlist ? "disabled" : ""}`}
+          onClick={handleAddToWishlist}
+          disabled={isInWishlist}
+        >
+          {isInWishlist
+            ? "Déjà dans la liste de souhaits"
+            : "Ajouter à la liste de souhaits"}
+        </button>
         <ActorsMovie actors={actors} />
         {snackbar.visible && (
           <Snackbar

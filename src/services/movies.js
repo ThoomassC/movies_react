@@ -6,7 +6,7 @@ const baseUrl = import.meta.env.VITE_TMDB_BASE_URL;
 export const getPopularMovies = async () => {
   try {
     const response = await axios.get(
-      `${baseUrl}/movie/popular?api_key=${apiKey}`
+      `${baseUrl}/movie/popular?api_key=${apiKey}&language=fr`
     );
 
     return response.data;
@@ -22,7 +22,7 @@ export const getPopularMovies = async () => {
 export const getMovieDetails = async (movieId) => {
   try {
     const response = await axios.get(
-      `${baseUrl}/movie/${movieId}?api_key=${apiKey}`
+      `${baseUrl}/movie/${movieId}?api_key=${apiKey}&language=fr`
     );
     return response.data;
   } catch (error) {
@@ -39,7 +39,7 @@ export const getMovieDetails = async (movieId) => {
 export const getMovieCredits = async (movieId) => {
   try {
     const response = await axios.get(
-      `${baseUrl}/movie/${movieId}/credits?api_key=${apiKey}`
+      `${baseUrl}/movie/${movieId}/credits?api_key=${apiKey}&language=fr`
     );
     return response.data;
   } catch (error) {
@@ -56,7 +56,7 @@ export const getMovieCredits = async (movieId) => {
 export const getMovieRecommendations = async (movieId) => {
   try {
     const response = await axios.get(
-      `${baseUrl}/movie/${movieId}/recommendations?api_key=${apiKey}`
+      `${baseUrl}/movie/${movieId}/recommendations?api_key=${apiKey}&language=fr`
     );
     return response.data;
   } catch (error) {
