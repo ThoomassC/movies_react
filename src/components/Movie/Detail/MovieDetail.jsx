@@ -73,9 +73,7 @@ const MovieDetail = () => {
               onClick={handleAddToWishlist}
               disabled={isInWishlist}
             >
-              {isInWishlist
-                ? "Déjà dans la liste de souhaits"
-                : "Ajouter à la liste de souhaits"}
+              {isInWishlist ? "Dans les souhaits" : "+ Souhaits"}
             </button>
           </div>
         </div>

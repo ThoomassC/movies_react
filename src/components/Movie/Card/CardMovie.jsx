@@ -23,9 +23,7 @@ const CardMovie = ({
           onClick={() => onAddToWishlist(movie)}
           disabled={isInWishlist}
         >
-          {isInWishlist
-            ? "Déjà dans la liste de souhaits"
-            : "Ajouter à la liste de souhaits"}
+          {isInWishlist ? "Dans les souhaits" : "+ Souhaits"}
         </button>
       )}
       {onRemoveFromWishlist && (
@@ -33,7 +31,7 @@ const CardMovie = ({
           className="card-remove-button"
           onClick={() => onRemoveFromWishlist(movie.id)}
         >
-          Retirer
+          - Souhaits
         </button>
       )}
     </div>
