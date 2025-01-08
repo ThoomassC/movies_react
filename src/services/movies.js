@@ -52,3 +52,20 @@ export const getMovieCredits = async (movieId) => {
     );
   }
 };
+
+export const getMovieRecommendations = async (movieId) => {
+  try {
+    const response = await axios.get(
+      `${baseUrl}/movie/${movieId}/recommendations?api_key=${apiKey}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(
+      `Erreur lors de la récupération des recommandations du film ID ${movieId} :`,
+      error
+    );
+    throw new Error(
+      `Erreur lors de la récupération des recommandations du film ID ${movieId}`
+    );
+  }
+};

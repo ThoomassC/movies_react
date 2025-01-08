@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { getMovieDetails, getMovieCredits } from "../../../services/movies";
 import Snackbar from "../../global/Snackbar/Snackbar";
 import { useWishlist } from "../../../context/WishlistContext";
+import MovieRecommendations from "../Recommendations/MovieRecommendations";
+import "./MovieDetail.css";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -13,7 +15,7 @@ const MovieDetail = () => {
     type: "",
     visible: false,
   });
-  const { addToWishlist } = useWishlist();
+  const { wishlist, addToWishlist } = useWishlist();
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -45,30 +47,66 @@ const MovieDetail = () => {
 
   if (!movie) return <div>Chargement en cours...</div>;
 
+  const isInWishlist = wishlist.some((item) => item.id === movie.id);
+
   return (
-    <div>
-      <h1>{movie.title}</h1>
-      <p>{movie.overview}</p>
-      <p>Date de sortie : {movie.release_date}</p>
-      <p>Note moyenne : {movie.vote_average}</p>
-      <h2>Acteurs principaux</h2>
-      <ul>
-        {actors.map((actor) => (
-          <li key={actor.id}>
-            {actor.name} dans le rôle de {actor.character}
-          </li>
-        ))}
-      </ul>
-      <button onClick={handleAddToWishlist}>
-        Ajouter à la liste de souhaits
-      </button>
-      {snackbar.visible && (
-        <Snackbar
-          message={snackbar.message}
-          type={snackbar.type}
-          onClose={() => setSnackbar({ message: "", type: "", visible: false })}
-        />
-      )}
+    <div className="movie-detail-page">
+      <div className="movie-detail-container">
+        <div className="movie-header">
+          <img
+            className="movie-poster"
+            src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+            alt={movie.title}
+          />
+          <div className="movie-info-container">
+            <h1 className="movie-title">{movie.title}</h1>
+            <p className="movie-overview">{movie.overview}</p>
+            <p className="movie-info">
+              <strong>Date de sortie :</strong> {movie.release_date}
+            </p>
+            <p className="movie-info">
+              <strong>Note moyenne :</strong> {movie.vote_average}
+            </p>
+            <button
+              className={`wishlist-button ${isInWishlist ? "disabled" : ""}`}
+              onClick={handleAddToWishlist}
+              disabled={isInWishlist}
+            >
+              {isInWishlist
+                ? "Déjà dans la liste de souhaits"
+                : "Ajouter à la liste de souhaits"}
+            </button>
+          </div>
+        </div>
+        <h2 className="actors-title">Acteurs principaux</h2>
+        <ul className="actors-list">
+          {actors.map((actor) => (
+            <li key={actor.id} className="actor-item">
+              <img
+                className="actor-photo"
+                src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+                alt={actor.name}
+              />
+              <div className="actor-info">
+                <p className="actor-name">{actor.name}</p>
+                <p className="actor-character">
+                  dans le rôle de {actor.character}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+        {snackbar.visible && (
+          <Snackbar
+            message={snackbar.message}
+            type={snackbar.type}
+            onClose={() =>
+              setSnackbar({ message: "", type: "", visible: false })
+            }
+          />
+        )}
+      </div>
+      <MovieRecommendations movieId={id} />
     </div>
   );
 };

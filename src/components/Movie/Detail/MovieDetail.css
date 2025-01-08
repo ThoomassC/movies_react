@@ -1,0 +1,131 @@
+.movie-detail-page {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem; /* Add gap between the detail and recommendations */
+  height: 100vh; /* Ensure the page takes the full height of the viewport */
+  padding: 2rem; /* Add padding around the page */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+.movie-detail-container {
+  flex: 3; /* Increase the flex value to take more space */
+  padding: 2rem;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+.movie-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.movie-poster {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.movie-info-container {
+  flex: 1;
+}
+
+.movie-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.movie-overview {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.movie-info {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.movie-info strong {
+  color: #000;
+}
+
+.actors-title {
+  font-size: 1.8rem;
+  color: #333;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.actors-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.actor-item {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  background-color: #fff;
+  padding: 0.5rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1 1 calc(50% - 1rem);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.actor-photo {
+  border-radius: 4px;
+  width: 80px;
+  height: auto;
+}
+
+.actor-info {
+  flex: 1;
+}
+
+.actor-name {
+  font-weight: bold;
+  margin: 0;
+}
+
+.actor-character {
+  margin: 0;
+  color: #666;
+}
+
+.wishlist-button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  margin-top: 1rem;
+}
+
+.wishlist-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.wishlist-button.disabled {
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+}
