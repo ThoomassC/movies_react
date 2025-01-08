@@ -16,7 +16,7 @@ const MovieDetail = () => {
     type: "",
     visible: false,
   });
-  const [error, setError] = useState(false); // Add error state
+  const [error, setError] = useState(false);
   const { wishlist, addToWishlist } = useWishlist();
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const MovieDetail = () => {
         setActors(creditsData.cast.slice(0, 10));
       } catch (error) {
         console.error("Erreur lors du chargement du film :", error);
-        setError(true); // Set error state
+        setError(true);
         showSnackbar("Erreur lors du chargement du film :", "error");
       }
     };
